@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50024
 File Encoding         : 65001
 
-Date: 2016-10-23 21:50:27
+Date: 2016-10-24 22:08:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `file_upload` (
   `file_content` longblob COMMENT 'file content in bytes',
   `secure_level` int(11) default NULL COMMENT 'secure level',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for oauth_role
@@ -41,7 +41,7 @@ CREATE TABLE `oauth_role` (
   PRIMARY KEY  (`id`),
   KEY `user_id_reference` (`user_id`),
   CONSTRAINT `user_id_reference` FOREIGN KEY (`user_id`) REFERENCES `oauth_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for oauth_service
@@ -54,7 +54,7 @@ CREATE TABLE `oauth_service` (
   PRIMARY KEY  (`id`),
   KEY `role_id_reference` (`role_id`),
   CONSTRAINT `role_id_reference` FOREIGN KEY (`role_id`) REFERENCES `oauth_role` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for oauth_user
@@ -68,5 +68,6 @@ CREATE TABLE `oauth_user` (
   `phone_number` varchar(255) default NULL COMMENT 'phone number',
   `email` varchar(255) default NULL COMMENT 'email',
   `description` varchar(255) default NULL COMMENT 'description',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `unique_name_index` USING HASH (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
