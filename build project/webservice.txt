@@ -1,1 +1,8 @@
 http://blog.csdn.net/Johnny_Lee/article/details/2149358
+
+
+http://spring.io/guides/gs/producing-web-service/
+
+http://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.2/example_schemagen_basic.html
+
+schemagen -d src/main/java/output src/main/java/schemas/WebServiceUser.java
